@@ -4,12 +4,15 @@ victoria = (ottawa - 300) % 2400
 edmonton = (ottawa - 200) % 2400
 winnipeg = (ottawa - 100) % 2400
 halifax = (ottawa + 100) % 2400
+st_john = (ottawa + 130) % 2400
 
-minutes = int(str(ottawa + 130)[-2:])
-if minutes >= 60:
-    st_john = (ottawa - int(str(ottawa)[-2:]) + 200 + minutes - 60) % 2400
-else:
-    st_john = (ottawa + 130) % 2400
+last_2_digits = int (str (st_john)[-2:])
+if last_2_digits >= 60:
+  hours = st_john // 100
+  minutes = st_john % 100
+  hours += minutes // 60
+  minutes = minutes % 60
+  st_john = int (str (hours) + str (minutes))
 
 print(ottawa, "in Ottawa")
 print(victoria, "in Victoria")
